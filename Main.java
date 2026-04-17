@@ -12,4 +12,3 @@ public class Main {
         System.out.println(status);
     }
 }
-//710.948.074-78
