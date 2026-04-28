@@ -2,7 +2,6 @@ public class VerificadorCPF {
     String cpf;
 
     public boolean validarCPF(String cpf) {
-        boolean isValid = false;
         int[] cpfArray = new int[11];
 
         //Extraindo apenas os números do cpf
@@ -10,8 +9,7 @@ public class VerificadorCPF {
 
         //Conferindo se o tamanho está correto
         if (cpfLimpo.length() != 11) {
-            isValid = false;
-            return isValid;
+            return false;
         }
 
         for (int i = 0; i < 11; i++) {
@@ -22,14 +20,11 @@ public class VerificadorCPF {
 
         //Conferindo se todos os digitos são iguais, comprando o primeiro digito com os demais
         for (int i = 1; i < 11; i++) {
-            isValid = false;
             if (cpfArray[0] != cpfArray[i]) {
-//                isValid = true;
                 break;
+            }else if(i == 11){
+                return false;
             }
-        }
-        if (isValid == false){
-            return isValid;
         }
 
         //Validção do primeiro digito
@@ -49,11 +44,8 @@ public class VerificadorCPF {
         if (resto1 == 10) {
             resto1 = 0;
         }
-        if ( (resto1 == cpfArray[9]) ) {
-            isValid = true;
-        }else {
-            isValid = false;
-            return isValid;
+        if (resto1 != cpfArray[9]) {
+            return false;
         }
 
         //Validação do segundo digito
@@ -73,12 +65,9 @@ public class VerificadorCPF {
         if (resto2 == 10) {
             resto2 = 0;
         }
-        if ( (resto2 == cpfArray[10]) ) {
-            isValid = true;
-        }else {
-            isValid = false;
-            return isValid;
+        if ( (resto2 != cpfArray[10]) ) {
+            return false;
         }
-        return isValid;
+        return true;
     }
 }
