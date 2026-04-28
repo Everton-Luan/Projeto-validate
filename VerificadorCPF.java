@@ -14,17 +14,17 @@ public class VerificadorCPF {
             return isValid;
         }
 
-        for (int i = 0; i < cpfLimpo.length(); i++) {
+        for (int i = 0; i < 11; i++) {
             char c = cpfLimpo.charAt(i);
             int digito = Character.getNumericValue(c);
             cpfArray[i] = digito;
         }
 
         //Conferindo se todos os digitos são iguais, comprando o primeiro digito com os demais
-        for (int i = 1; i <= cpfLimpo.length()-1; i++) {
+        for (int i = 1; i < 11; i++) {
             isValid = false;
             if (cpfArray[0] != cpfArray[i]) {
-                isValid = true;
+//                isValid = true;
                 break;
             }
         }
@@ -36,7 +36,7 @@ public class VerificadorCPF {
         int multiplicador1 = 10;
         int soma1 = 0;
 
-        for (int i = 0; i < cpfLimpo.length(); i++) {
+        for (int i = 0; i < 11; i++) {
             int resultado = cpfArray[i] * multiplicador1;
             soma1 += resultado;
             multiplicador1--;
@@ -60,7 +60,7 @@ public class VerificadorCPF {
         int multiplicador2 = 11;
         int soma2 = 0;
 
-        for (int i = 0; i < cpfLimpo.length(); i++) {
+        for (int i = 0; i < 11; i++) {
             int resultado = cpfArray[i] * multiplicador2;
             soma2 += resultado;
             multiplicador2--;

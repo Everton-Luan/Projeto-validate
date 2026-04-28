@@ -5,16 +5,12 @@ public class VerificadorCell {
      * <b>- Conferir se possui DDD ou/e DDI</br>
     */
     public boolean validarCell(String cell) {
-        boolean isValid=false;
 
         //Extraindo apenas os números do telefone/celular
         String cellLimpo = cell.replaceAll("\\D", "");
 
         if (cellLimpo.length() > 13 || cellLimpo.length() < 8) {
-            isValid = false;
-            return isValid;
-        }else {
-            isValid = true;
+            return false;
         }
 
         //Destacando os casos com DDI, e retirando ele para facilitar o resto
@@ -23,8 +19,7 @@ public class VerificadorCell {
             if (cellLimpo.startsWith("55")) {
                 cellLimpo = cellLimpo.substring(2);
             } else {
-                isValid = false;
-                return isValid;
+                return false;
             }
         }
 
@@ -33,44 +28,39 @@ public class VerificadorCell {
             case 8:
 
                 if (cellLimpo.startsWith("9")) {
-                    isValid = false;
-                }else {
-                    isValid = true;
+                    return false;
                 }
                 break;
 
             case 9:
 
                 if (!cellLimpo.startsWith("9")) {
-                    isValid = false;
-                }else {
-                    isValid = true;
+                    return false;
                 }
                 break;
 
             case 10:
 
                 if (cellLimpo.charAt(2) == '9') {
-                    isValid = false;
+                    return false;
                 }else if (cellLimpo.charAt(0) == '0' || cellLimpo.charAt(1) == '0') {
-                    isValid = false;
-                }else {
-                    isValid = true;
+                    return false;
                 }
                 break;
 
             case 11:
 
                 if (cellLimpo.charAt(2) != '9') {
-                    isValid = false;
+                    return false;
                 }else if (cellLimpo.charAt(0) == '0' || cellLimpo.charAt(1) == '0') {
-                    isValid = false;
-                }else {
-                    isValid = true;
+                    return false;
                 }
                 break;
+
+            default:
+                return false;
         }
 
-        return isValid;
+        return true;
     }
 }
