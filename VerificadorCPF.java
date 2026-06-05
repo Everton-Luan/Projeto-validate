@@ -22,7 +22,7 @@ public class VerificadorCPF {
         for (int i = 1; i < 11; i++) {
             if (cpfArray[0] != cpfArray[i]) {
                 break;
-            }else if(i == 11){
+            }else if(i == 10){
                 return false;
             }
         }
